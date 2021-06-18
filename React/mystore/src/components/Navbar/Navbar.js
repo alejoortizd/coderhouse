@@ -1,10 +1,9 @@
 import React from 'react';
-import { MenuItems } from './Menuitems';
 import './Navbar.css';
 
 import CartButton from '../Button/CartButton'
 
-const Navbar = () => {
+const Navbar = ({items}) => {
   
   return(
     <nav className="NavbarItems">
@@ -12,7 +11,7 @@ const Navbar = () => {
       <div className="menu-icon">
       </div>
       <ul className='nav-menu'>
-        {MenuItems.map((item) => {
+        {items.map((item) => {
           return (
             <li key={item.title}>
               <a className={item.cName} href={item.url}>
