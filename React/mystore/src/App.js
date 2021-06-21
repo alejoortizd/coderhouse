@@ -22,6 +22,19 @@ function App() {
     }
   };
 
+  const onRemove = (item) => {
+    const exist = cartItem.find((product) => product.id === item.id);
+    if (!exist) {
+      setCartItem([...cartItem, { ...item, qty: 1 }]);
+    } else {
+      setCartItem(
+        cartItem.map((product) =>
+          product.id === item.id ? { ...exist, qty: exist.qty - 1 } : product
+        )
+      );
+    }
+  };
+
   useEffect(() => {
     async function fetchData() {
       setTimeout(async() => {
@@ -36,7 +49,7 @@ function App() {
     <>
       <NavBar items={items} />
       <br></br>
-      <Cards products={products} cartItems={cartItem} onAdd={onAdd} />
+      <Cards products={products} cartItems={cartItem} onAdd={onAdd} onRemove={onRemove}/>
     </>
   );
 }
