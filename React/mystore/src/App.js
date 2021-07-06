@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router } from 'react-router-dom';
 import "./App.css";
 import {cargarData} from './helpers/helpers'
 import NavBar from "./components/Navbar/Navbar";
-import Cards from "./components/Card/Cards";
+import Cards from "./components/itemListContainer/CardsContainer";
 import { items } from "./data/Menuitems";
+import Page from './components/Routes';
 
 function App() {
   const [cartItem, setCartItem] = useState([]);
@@ -11,6 +13,7 @@ function App() {
 
   const onAdd = (item) => {
     const exist = cartItem.find((product) => product.id === item.id);
+    console.log(cartItem[0]?.qty)
     if (!exist) {
       setCartItem([...cartItem, { ...item, qty: 1 }]);
     } else {
@@ -47,9 +50,12 @@ function App() {
 
   return (
     <>
-      <NavBar items={items} />
-      <br></br>
-      <Cards products={products} cartItems={cartItem} onAdd={onAdd} onRemove={onRemove}/>
+      <Router>
+        <NavBar items={items} />
+        <br></br>
+        <Page />
+        <Cards products={products} cartItems={cartItem} onAdd={onAdd} onRemove={onRemove}/>
+      </Router>
     </>
   );
 }

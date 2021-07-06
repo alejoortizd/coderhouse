@@ -30,6 +30,12 @@ const Product = (props) => {
           </button>
         </div>
       </div>
+      <div className="btn-group" role="group" aria-label="Basic mixed styles example">
+        <button className="btn btn-primary" type="button" onClick={() => alert('Producto agregado')}>
+          Agregar al Carrito
+        </button>
+        <a href={`/productos/${product}`} className="btn btn-success" onClick={() => {}}>Ver Producto</a>
+      </div>
     </div>
   );
 };
